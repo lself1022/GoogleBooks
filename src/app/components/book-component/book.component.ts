@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Book} from "../../models/book";
 
 @Component({
@@ -8,13 +8,16 @@ import {Book} from "../../models/book";
 })
 export class BookComponent implements OnInit {
 
+  @Input()
   book: Book;
 
   constructor() {
-    this.book = new Book();
   }
 
   ngOnInit(): void {
   }
 
+  favorite() {
+    return undefined;
+  }
 }

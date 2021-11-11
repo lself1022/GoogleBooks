@@ -1,1 +1,7 @@
-<h1 id="title">Title: {{book.title}}</h1>
+<div id="title">Title: {{book.title}}</div><br>
+<div id="author">Author: {{book.author}}</div><br>
+<div id="description">Description: {{book.description}}</div><br>
+<div id="type">Type: {{book.type}}</div><br>
+<img src="{{book.thumbnail}}" id="thumbnail" alt="Book cover thumbnail" /><br>
+<button (click)="favorite()" id="favoriteButton">Favorite</button>
+
