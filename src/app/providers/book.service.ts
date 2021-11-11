@@ -21,4 +21,14 @@ export class BookService {
     }
     return bookArray;
   }
+
+  getBooksToRead() {
+    let bookArray: Book[] = [];
+    for (let i = 0; i < 3; i++) {
+      let newBook = new Book();
+      newBook.title = `To Read ${i}`;
+      bookArray.push(newBook);
+    }
+    return bookArray;
+  }
 }

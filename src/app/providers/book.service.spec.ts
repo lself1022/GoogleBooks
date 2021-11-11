@@ -35,4 +35,19 @@ describe('BookService', () => {
       }
     });
   });
+
+  describe('getBooksToRead', () => {
+    it('returns 3 book model objects when asked what books the user wants to read', () => {
+      let results: Book[] = service.getBooksToRead();
+      expect(results.length).toBe(3);
+    });
+
+    it('changes the title of each book to "To Read " + the index in the list', () => {
+      let results: Book[] = service.getBooksToRead();
+      for (let i = 0; i < 3; i++) {
+        expect(results[i].title).toBe(`To Read ${ i }`);
+      }
+    });
+  });
+
 });
