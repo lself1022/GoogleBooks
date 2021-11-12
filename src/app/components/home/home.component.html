@@ -1,0 +1,17 @@
+<div id="favorite_book">
+    <div class="row">
+        <h2>Favorite Book</h2>
+    </div>
+    <div class="row">
+        <gb-book-component [book]="favoriteBook" [isFavorite]="true" (favoriteEvent)="favorite($event)" class="favoriteBook"></gb-book-component>
+    </div>
+</div>
+
+<div class="row">
+    <h2>Books To Read</h2>
+</div>
+<div id="booksToRead">
+    <div *ngFor="let book of booksToRead" class="bookToRead row">
+        <gb-book-component [book]="book" (favoriteEvent)="favorite($event)" class="favoriteBook"></gb-book-component>
+    </div>
+</div>

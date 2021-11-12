@@ -1,7 +1,39 @@
-<div id="title">Title: {{book.title}}</div><br>
-<div id="author">Author: {{book.author}}</div><br>
-<div id="description">Description: {{book.description}}</div><br>
-<div id="type">Type: {{book.type}}</div><br>
-<img src="{{book.thumbnail}}" id="thumbnail" alt="Book cover thumbnail" /><br>
-<button (click)="favorite()" id="favoriteButton">Favorite</button>
+<div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{{book.thumbnail}}" id="thumbnail" alt="Book cover thumbnail" class="img-fluid rounded-start" />
+        </div>
+        <div class="col-md-8">
+
+            <div class="card-body">
+                <h3 class="card-title" id="title">Title: {{book.title}}</h3>
+                <h6 class="card-subtitle mb-2 text-muted" id="author">Author: {{book.author}}</h6>
+                <div class="card-text">
+                    <b>Description</b><br>
+                    <p id="description">{{book.description}}</p><br>
+                    <b>Type</b><br>
+                    <p id="type">{{book.type}}</p>
+                </div>
+                <div *ngIf="!isFavorite" >
+                    <button (click)="favorite()" id="favoriteButton" class="btn btn-primary">Favorite</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="row">-->
+<!--    <div class="col-sm-3">-->
+<!--        <img src="{{book.thumbnail}}" id="thumbnail" alt="Book cover thumbnail" class="img-fluid rounded-start" />-->
+<!--    </div>-->
+<!--    <div class="col-sm-9">-->
+<!--        <div id="title"><b>Title:</b> {{book.title}}</div><br>-->
+<!--        <div id="author"><b>Author:</b> {{book.author}}</div><br>-->
+<!--        <div id="description"><b>Description:</b> {{book.description}}</div><br>-->
+<!--        <div id="type"><b>Type:</b> {{book.type}}</div><br>-->
+<!--        <div *ngIf="!isFavorite" >-->
+<!--            <button (click)="favorite()" id="favoriteButton" class="btn btn-primary">Favorite</button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 

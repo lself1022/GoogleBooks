@@ -15,6 +15,11 @@ describe('BookComponent', () => {
     .compileComponents();
   });
 
+  beforeEach(() => {
+    fixture = TestBed.createComponent(BookComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -22,11 +27,29 @@ describe('BookComponent', () => {
 
   describe('component', () => {
 
+    describe('favorite function', () => {
+      it('should emit addToFavoriteEvent when invoked',  () => {
+        spyOn(component.favoriteEvent, 'emit');
+        component.favorite();
+        fixture.detectChanges();
+        expect(component.favoriteEvent.emit).toHaveBeenCalled();
+      });
+    });
+
     describe('favorite button',  () => {
 
-      it('should create', () => {
+      it('should exist when isFavorite is false', () => {
+        component.isFavorite = false;
+        fixture.detectChanges();
         const favoriteButton: DebugElement = fixture.debugElement.query(By.css('#favoriteButton'));
         expect(favoriteButton).toBeTruthy();
+      });
+
+      it('should not exist when isFavorite is true', function () {
+        component.isFavorite = true;
+        fixture.detectChanges();
+        const favoriteButton: DebugElement = fixture.debugElement.query(By.css('#favoriteButton'));
+        expect(favoriteButton).toBeFalsy();
       });
 
       it('should call the favorite() method when clicked', function () {
@@ -47,14 +70,18 @@ describe('BookComponent', () => {
       expect(titleElement.nativeElement.textContent).toContain('Author: ' + component.book.author);
     });
 
-    it('has a label for the type with the value of "Type:" and displays the book type', () => {
+    it('displays the book type', () => {
+      component.book.type = "Textbook";
+      fixture.detectChanges();
       let typeElement: DebugElement = fixture.debugElement.query(By.css('#type'));
-      expect(typeElement.nativeElement.textContent).toContain('Type: ' + component.book.type);
+      expect(typeElement.nativeElement.textContent).toContain(component.book.type);
     });
 
-    it('has a label for the description with the value of "Description:" and displays the book description', () => {
+    it('displays the book description', () => {
+      component.book.description = 'A book description';
+      fixture.detectChanges();
       let descriptionElement: DebugElement = fixture.debugElement.query(By.css('#description'));
-      expect(descriptionElement.nativeElement.textContent).toContain('Description: ' + component.book.description);
+      expect(descriptionElement.nativeElement.textContent).toContain(component.book.description);
     });
 
     it('has a label for the thumbnail with the value of "Thumbnail:" and displays the book thumbnail', () => {
