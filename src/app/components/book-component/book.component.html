@@ -1,16 +1,18 @@
 <div class="card mb-3">
     <div class="row g-0">
-        <div class="col-md-4">
-            <img src="{{book.thumbnail}}" id="thumbnail" alt="Book cover thumbnail" class="img-fluid rounded-start" />
+        <div class="col-md-auto">
+            <img src="{{book.thumbnail}}" id="thumbnail" alt="Book cover thumbnail" class="rounded-start mx-auto d-block" style="max-width: 200px;"  />
         </div>
-        <div class="col-md-8">
-
-            <div class="card-body">
+        <div class="col-md">
+            <div class="card-header">
                 <h3 class="card-title" id="title">Title: {{book.title}}</h3>
                 <h6 class="card-subtitle mb-2 text-muted" id="author">Author: {{book.author}}</h6>
+            </div>
+            <div class="card-body">
+
                 <div class="card-text">
                     <b>Description</b><br>
-                    <p id="description">{{book.description}}</p><br>
+                    <p id="description">{{book.description}}</p>
                     <b>Type</b><br>
                     <p id="type">{{book.type}}</p>
                 </div>

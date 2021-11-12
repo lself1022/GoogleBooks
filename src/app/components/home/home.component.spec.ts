@@ -43,6 +43,18 @@ describe('HomeComponent', () => {
   });
 
   describe('component', () => {
+    describe('addNewBook link', () => {
+      it('should  exist as an anchor with a class of "addNewBook"', function () {
+        const anchorElement = fixture.debugElement.query(By.css('.addNewBook'));
+        expect(anchorElement).toBeTruthy();
+      });
+
+      it('should display "Add Book"', function () {
+        const anchorElement = fixture.debugElement.query(By.css('.addNewBook'));
+        expect(anchorElement.nativeElement.textContent).toContain('Add Book');
+      });
+    });
+    
     describe('addToFavorite', () => {
       it('should set the favoriteBook property to be the passed value', function () {
         let oldFavorite: Book = new Book();
