@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { HomeComponent } from './home.component';
-import {Book} from "../../models/book";
+import {HomeComponent} from './home.component';
 import {By} from "@angular/platform-browser";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -10,7 +10,8 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
+      declarations: [ HomeComponent ],
+      imports: [HttpClientTestingModule]
     })
     .compileComponents();
   });
@@ -19,15 +20,6 @@ describe('HomeComponent', () => {
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-  
-  it('should have the book property set to the value returned from the service when ngOnInit is called', function () {
-    let book: Book = new Book();
-    spyOn(component.bookService,'getFavorite').and.returnValue(book);
-    component.ngOnInit();
-    fixture.detectChanges();
-    expect(component.bookService.getFavorite).toHaveBeenCalled();
-    expect(component.favoriteBook).toBe(book);
   });
 
   it('should create the app', () => {
@@ -54,17 +46,7 @@ describe('HomeComponent', () => {
         expect(anchorElement.nativeElement.textContent).toContain('Add Book');
       });
     });
-    
-    describe('addToFavorite', () => {
-      it('should set the favoriteBook property to be the passed value', function () {
-        let oldFavorite: Book = new Book();
-        let newFavorite: Book = new Book();
-        newFavorite.title = 'new title';
-        component.favoriteBook = oldFavorite;
-        component.favorite(newFavorite);
-        expect(component.favoriteBook).toBe(newFavorite);
-      });
-    });
+
   });
 
   describe('template', () => {

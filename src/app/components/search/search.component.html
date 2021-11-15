@@ -1,1 +1,8 @@
-<p>search works!</p>
+<form #searchForm='ngForm' (ngSubmit)="search(searchForm)"  class="row row-cols-lg-auto g-3 align-items-center">
+    <div class="col-12">
+        <input class="form-control" name="input" type="text" placeholder="Search..." ngModel />
+    </div>
+    <div class="col-12">
+        <button class="btn btn-primary" type="submit">Search</button>
+    </div>
+</form>

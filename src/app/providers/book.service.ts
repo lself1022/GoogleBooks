@@ -1,31 +1,44 @@
 import {Injectable} from '@angular/core';
 import {Book} from "../models/book";
+import {HttpClient} from "@angular/common/http";
+import {map, mergeMap, Observable} from "rxjs";
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
-
-  constructor() { }
-
-  getFavorite() {
-    let newBook = new Book();
-    newBook.title = `The Bestest Book Ever`;
-    newBook.thumbnail = BOOK_THUMBNAILS[3];
-    newBook.type = 'Print';
-    newBook.author = `A. Thor`;
-    newBook.description = `THIS BOOK IS Fing INCREDIBLE`;
-    return newBook;
+  setFavorite(favBook: Book) {
+      this.favorite = favBook;
   }
 
-  getSearchResults() {
-    let bookArray: Book[] = [];
-    for (let i = 0; i < 10; i++) {
-      let newBook = new Book();
-      newBook.title = `Search Result ${i}`;
-      bookArray.push(newBook);
-    }
-    return bookArray;
+  favorite: Book = new Book();
+
+  constructor(public httpClient: HttpClient) { }
+
+  getFavorite() {
+    return this.favorite;
+  }
+
+  getSearchResults(input: String): Observable<Book> {
+    let url: string = 'https://www.googleapis.com/books/v1/volumes?q=' + input;
+    return this.httpClient.get(url)
+        .pipe(mergeMap((value: any) => {
+          return value.items;
+        }))
+        .pipe(map((value: any) => {
+          return value.volumeInfo;
+        }))
+        .pipe(map((value: any) => {
+            let book = new Book();
+            book.description = value.description;
+            book.author = value.authors.join(', ');
+            book.type = value.printType;
+            book.title = value.title;
+            book.thumbnail = value.imageLinks.thumbnail;
+            return book;
+        }))
   }
 
   getBooksToRead() {

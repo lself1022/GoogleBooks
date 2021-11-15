@@ -1,9 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {AppComponent} from './app.component';
-import {Book} from "./models/book";
-import {BookService} from "./providers/book.service";
-import {By} from "@angular/platform-browser";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 
 describe('AppComponent', () => {
@@ -13,7 +11,8 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+          HttpClientTestingModule
       ],
       declarations: [
         AppComponent

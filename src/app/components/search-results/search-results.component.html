@@ -1,1 +1,3 @@
-<p>Term: {{term}}</p>
+<div *ngFor="let book of results" class="bookToRead row">
+    <gb-book-component [book]="book"></gb-book-component>
+</div>
